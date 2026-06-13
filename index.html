@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Blitz — Web Design for Local Businesses</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #0a1628;
+  --navy-mid: #0d2044;
+  --navy-light: #162a50;
+  --blue: #4a9bbe;
+  --blue-light: #7ec8e3;
+  --white: #ffffff;
+  --off-white: #f4f7fb;
+  --gray: #8a96a8;
+  --border: rgba(74,155,190,0.15);
+  --text: #1a2a3a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 6vw;
+  background: rgba(10,22,40,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(74,155,190,0.1);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo svg { width: 32px; height: 32px; }
+
+.nav-logo-text {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.7);
+}
+
+.nav-logo-text span {
+  font-weight: 700;
+  color: var(--white);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--blue-light); }
+
+.nav-cta {
+  background: var(--blue) !important;
+  color: var(--white) !important;
+  padding: 9px 20px !important;
+  border-radius: 4px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.06em !important;
+  transition: background 0.2s !important;
+}
+
+.nav-cta:hover { background: var(--blue-light) !important; }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  background: var(--navy);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 6vw 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-bg-circle-1 {
+  width: 600px; height: 600px;
+  top: -200px; right: -100px;
+  background: radial-gradient(circle, rgba(74,155,190,0.06) 0%, transparent 70%);
+}
+
+.hero-bg-circle-2 {
+  width: 400px; height: 400px;
+  bottom: -100px; left: -100px;
+  background: radial-gradient(circle, rgba(126,200,227,0.04) 0%, transparent 70%);
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(74,155,190,0.1);
+  border: 1px solid rgba(74,155,190,0.25);
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 32px;
+  width: fit-content;
+  animation: fadeUp 0.7s ease both;
+}
+
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  background: var(--blue-light);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hero-badge span {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-light);
+}
+
+.hero h1 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  max-width: 800px;
+  margin-bottom: 24px;
+  animation: fadeUp 0.7s ease 0.1s both;
+}
+
+.hero h1 .accent { color: var(--blue-light); }
+
+.hero-sub {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  max-width: 520px;
+  line-height: 1.85;
+  margin-bottom: 48px;
+  animation: fadeUp 0.7s ease 0.2s both;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.7s ease 0.3s both;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 15px 36px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background: var(--blue-light);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  color: rgba(255,255,255,0.55);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s, gap 0.2s;
+}
+
+.btn-ghost:hover { color: var(--white); gap: 12px; }
+
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  margin-top: 72px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(74,155,190,0.1);
+  animation: fadeUp 0.7s ease 0.4s both;
+  flex-wrap: wrap;
+}
+
+.stat-item {}
+
+.stat-num {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: var(--blue-light);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── SECTION BASE ─── */
+.section {
+  padding: 100px 6vw;
+}
+
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.eyebrow-line {
+  width: 32px;
+  height: 1px;
+  background: var(--blue);
+}
+
+.eyebrow-text {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.section-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.1;
+  color: var(--navy);
+  max-width: 600px;
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+
+.section-title .accent { color: var(--blue); }
+
+.section-sub {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--gray);
+  max-width: 480px;
+  line-height: 1.8;
+  margin-bottom: 60px;
+}
+
+/* ─── HOW IT WORKS ─── */
+.how-it-works {
+  background: var(--off-white);
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2px;
+  background: rgba(74,155,190,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.step {
+  background: var(--white);
+  padding: 40px 32px;
+  position: relative;
+  transition: background 0.3s;
+}
+
+.step:hover { background: var(--navy); }
+.step:hover .step-title { color: var(--white); }
+.step:hover .step-desc { color: rgba(255,255,255,0.55); }
+.step:hover .step-num { color: rgba(74,155,190,0.2); }
+
+.step-num {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 3.5rem;
+  color: rgba(10,22,40,0.06);
+  line-height: 1;
+  margin-bottom: 20px;
+  transition: color 0.3s;
+}
+
+.step-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: var(--navy);
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.step-desc {
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--gray);
+  transition: color 0.3s;
+}
+
+/* ─── WHY US ─── */
+.why-us {
+  background: var(--white);
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .why-grid { grid-template-columns: 1fr; gap: 48px; }
+}
+
+.why-visual {
+  background: var(--navy);
+  border-radius: 16px;
+  padding: 48px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.why-visual::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(74,155,190,0.15) 0%, transparent 70%);
+}
+
+.why-visual-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 32px;
+}
+
+.why-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(74,155,190,0.15);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.why-card-icon {
+  width: 36px; height: 36px; min-width: 36px;
+  background: rgba(74,155,190,0.12);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+}
+
+.why-card-text {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.5;
+}
+
+.why-card-text strong {
+  display: block;
+  color: var(--white);
+  font-weight: 500;
+  margin-bottom: 2px;
+  font-size: 0.9rem;
+}
+
+.reasons { list-style: none; }
+
+.reason {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(10,22,40,0.06);
+}
+
+.reason:last-child { border-bottom: none; }
+
+.reason-check {
+  width: 22px; height: 22px; min-width: 22px;
+  background: rgba(74,155,190,0.1);
+  border: 1px solid rgba(74,155,190,0.3);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem;
+  color: var(--blue);
+  margin-top: 2px;
+}
+
+.reason-text {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.65;
+}
+
+.reason-text strong {
+  font-weight: 500;
+  color: var(--navy);
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* ─── PRICING ─── */
+.pricing {
+  background: var(--off-white);
+}
+
+.pricing-card {
+  background: var(--navy);
+  border-radius: 16px;
+  padding: 56px 52px;
+  max-width: 560px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card::after {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, rgba(74,155,190,0.1) 0%, transparent 70%);
+}
+
+.pricing-badge {
+  display: inline-block;
+  background: rgba(126,200,227,0.12);
+  border: 1px solid rgba(126,200,227,0.2);
+  color: var(--blue-light);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+}
+
+.pricing-amount {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 5rem;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.pricing-period {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.06em;
+  margin-bottom: 36px;
+}
+
+.pricing-features {
+  list-style: none;
+  margin-bottom: 44px;
+}
+
+.pricing-feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+}
+
+.pricing-feature:last-child { border-bottom: none; }
+
+.feature-dot {
+  width: 5px; height: 5px; min-width: 5px;
+  background: var(--blue);
+  border-radius: 50%;
+}
+
+.btn-pricing {
+  display: block;
+  text-align: center;
+  background: var(--blue);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-pricing:hover {
+  background: var(--blue-light);
+  transform: translateY(-2px);
+}
+
+.pricing-note {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.04em;
+}
+
+/* ─── CONTACT ─── */
+.contact {
+  background: var(--navy);
+  padding: 100px 6vw;
+}
+
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+}
+
+.contact .section-title { color: var(--white); }
+.contact .section-sub { color: rgba(255,255,255,0.4); }
+.contact .eyebrow-text { color: var(--blue-light); }
+.contact .eyebrow-line { background: var(--blue-light); }
+
+.contact-detail {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.contact-icon {
+  width: 38px; height: 38px;
+  background: rgba(74,155,190,0.1);
+  border: 1px solid rgba(74,155,190,0.2);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.contact-detail-text {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+}
+
+.contact-detail-text strong {
+  display: block;
+  color: var(--white);
+  font-weight: 500;
+  font-size: 0.92rem;
+  margin-bottom: 1px;
+}
+
+.contact-email-cta {
+  margin-top: 40px;
+  padding: 32px;
+  background: rgba(74,155,190,0.06);
+  border: 1px solid rgba(74,155,190,0.15);
+  border-radius: 12px;
+}
+
+.contact-email-cta p {
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.contact-email-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--blue-light);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: gap 0.2s;
+}
+
+.contact-email-link:hover { gap: 16px; }
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 500px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+
+.form-label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+.form-input {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(74,155,190,0.15);
+  border-radius: 6px;
+  padding: 13px 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--white);
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.form-input::placeholder { color: rgba(255,255,255,0.2); }
+.form-input:focus { border-color: rgba(74,155,190,0.4); }
+
+textarea.form-input { min-height: 120px; resize: vertical; }
+
+.btn-submit {
+  background: var(--blue);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 15px 32px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-submit:hover {
+  background: var(--blue-light);
+  transform: translateY(-2px);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: #060e1a;
+  padding: 32px 6vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-top: 1px solid rgba(74,155,190,0.06);
+}
+
+.footer-logo {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.3);
+  text-decoration: none;
+}
+
+.footer-logo span { font-weight: 700; color: rgba(255,255,255,0.5); }
+
+.footer-copy {
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.2);
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="15" fill="#0d2044" stroke="#7ec8e3" stroke-width="0.8" opacity="0.6"/>
+      <path d="M 19,5 L 11,17 L 16,17 L 13,27 L 21,16 L 16,16 L 20,5 Z" fill="#7ec8e3"/>
+    </svg>
+    <div class="nav-logo-text">ONLINE <span>BLITZ</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-circle hero-bg-circle-1"></div>
+  <div class="hero-bg-circle hero-bg-circle-2"></div>
+
+  <div class="hero-badge">
+    <div class="hero-badge-dot"></div>
+    <span>Web Design for Local Businesses</span>
+  </div>
+
+  <h1>Your customers are<br>searching. <span class="accent">Are they<br>finding you?</span></h1>
+
+  <p class="hero-sub">We build fast, clean websites for local businesses — and we'll send you a free preview before you spend a single dollar. No risk, no contracts.</p>
+
+  <div class="hero-actions">
+    <a href="mailto:dallas@onlineblitz.co" class="btn-primary">Get Your Free Preview</a>
+    <a href="#how" class="btn-ghost">See how it works →</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">$599</div>
+      <div class="stat-label">Flat one-time fee</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">24hr</div>
+      <div class="stat-label">Delivery time</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">$0</div>
+      <div class="stat-label">To see your preview</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section how-it-works" id="how">
+  <div class="section-eyebrow">
+    <div class="eyebrow-line"></div>
+    <span class="eyebrow-text">The Process</span>
+  </div>
+  <h2 class="section-title">From zero to live in <span class="accent">24 hours.</span></h2>
+  <p class="section-sub">We handle everything. You just approve what you love.</p>
+
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">We Find You</div>
+      <p class="step-desc">We search Google for local businesses that are missing a website or have one that's hurting them. If that's you, we reach out.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Free Preview</div>
+      <p class="step-desc">We build a custom site using your real business name, phone, and services — and send you a live link. Zero commitment, zero cost.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">You Approve</div>
+      <p class="step-desc">Love it? Request any changes you want. We don't ask for payment until you're completely happy with what you see.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-title">Go Live</div>
+      <p class="step-desc">We connect your domain and launch. Your site is live and working for you within 24 hours of approval.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section why-us" id="why">
+  <div class="why-grid">
+    <div>
+      <div class="section-eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Why Online Blitz</span>
+      </div>
+      <h2 class="section-title">Built for businesses that are <span class="accent">ready to grow.</span></h2>
+      <p class="section-sub">We're not a big agency with big overhead. We're a focused team that builds great sites fast — and we only get paid when you're happy.</p>
+
+      <ul class="reasons">
+        <li class="reason">
+          <div class="reason-check">✓</div>
+          <div class="reason-text">
+            <strong>Free preview, no strings</strong>
+            You see your site before you spend anything. No pressure, no sales calls.
+          </div>
+        </li>
+        <li class="reason">
+          <div class="reason-check">✓</div>
+          <div class="reason-text">
+            <strong>One flat price, forever yours</strong>
+            $599 and the site is yours. No monthly fees, no subscriptions, no surprises.
+          </div>
+        </li>
+        <li class="reason">
+          <div class="reason-check">✓</div>
+          <div class="reason-text">
+            <strong>Delivered in 24 hours</strong>
+            From approval to live site in one day. We move fast so you can too.
+          </div>
+        </li>
+        <li class="reason">
+          <div class="reason-check">✓</div>
+          <div class="reason-text">
+            <strong>Built to show up on Google</strong>
+            Every site we build is optimized so your customers can actually find you.
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="why-visual">
+      <div class="why-visual-title">What you get</div>
+      <div class="why-card">
+        <div class="why-card-icon">⚡</div>
+        <div class="why-card-text">
+          <strong>Custom one-page website</strong>
+          Built specifically for your business, not a template.
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">📱</div>
+        <div class="why-card-text">
+          <strong>Mobile-first design</strong>
+          Looks perfect on every phone, tablet, and desktop.
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">🔍</div>
+        <div class="why-card-text">
+          <strong>Google-ready from day one</strong>
+          Basic SEO built in so search engines can find you.
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">📬</div>
+        <div class="why-card-text">
+          <strong>Contact form included</strong>
+          Customers can reach you directly from your site.
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">🔒</div>
+        <div class="why-card-text">
+          <strong>Secure HTTPS hosting</strong>
+          SSL certificate included so visitors trust your site.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section pricing" id="pricing">
+  <div class="section-eyebrow">
+    <div class="eyebrow-line"></div>
+    <span class="eyebrow-text">Pricing</span>
+  </div>
+  <h2 class="section-title">One price. <span class="accent">No surprises.</span></h2>
+  <p class="section-sub">We keep it simple because we think you deserve to know exactly what you're paying for.</p>
+
+  <div class="pricing-card">
+    <div class="pricing-badge">Most Popular</div>
+    <div class="pricing-amount">$599</div>
+    <div class="pricing-period">one-time payment · you own it forever</div>
+    <ul class="pricing-features">
+      <li class="pricing-feature"><div class="feature-dot"></div> Custom website built for your business</li>
+      <li class="pricing-feature"><div class="feature-dot"></div> Mobile-friendly and fast-loading</li>
+      <li class="pricing-feature"><div class="feature-dot"></div> Google-ready from day one</li>
+      <li class="pricing-feature"><div class="feature-dot"></div> Contact form so customers reach you</li>
+      <li class="pricing-feature"><div class="feature-dot"></div> Secure HTTPS hosting included</li>
+      <li class="pricing-feature"><div class="feature-dot"></div> Free preview before any payment</li>
+      <li class="pricing-feature"><div class="feature-dot"></div> Delivered within 24 hours of approval</li>
+    </ul>
+    <a href="mailto:dallas@onlineblitz.co" class="btn-pricing">Get Your Free Preview →</a>
+    <p class="pricing-note">Free preview · No card required · No commitment</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Get In Touch</span>
+      </div>
+      <h2 class="section-title">Let's get your<br>business online.</h2>
+      <p class="section-sub">Send us a quick email with your business name and what you do. We'll have a free preview ready within 24 hours.</p>
+
+      <div class="contact-detail">
+        <div class="contact-icon">📍</div>
+        <div class="contact-detail-text">
+          <strong>Based in Mesa, AZ</strong>
+          Serving businesses across the US
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">⚡</div>
+        <div class="contact-detail-text">
+          <strong>Free preview in 24 hours</strong>
+          No card, no commitment required
+        </div>
+      </div>
+
+      <div class="contact-email-cta">
+        <p>The easiest way to get started is to send us a quick email. Tell us your business name and what you do — that's all we need to build your free preview.</p>
+        <a href="mailto:dallas@onlineblitz.co" class="contact-email-link">
+          dallas@onlineblitz.co →
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input type="text" class="form-input" placeholder="Joe Smith">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Business Name</label>
+          <input type="text" class="form-input" placeholder="Joe's Plumbing">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" placeholder="joe@joesplumbing.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">What Does Your Business Do?</label>
+        <input type="text" class="form-input" placeholder="Plumber, salon, restaurant...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Anything Else We Should Know?</label>
+        <textarea class="form-input" placeholder="Current website URL, specific requests..."></textarea>
+      </div>
+      <button class="btn-submit">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">ONLINE <span>BLITZ</span></a>
+  <span class="footer-copy">© 2026 OnlineBlitz.co · Mesa, AZ · All rights reserved</span>
+  <span class="footer-copy">Built fast. Built right.</span>
+</footer>
+
+</body>
+</html>
